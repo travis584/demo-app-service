@@ -39,7 +39,6 @@ resource "google_storage_bucket" "encrypted_exports" {
   storage_class               = "NEARLINE"
   uniform_bucket_level_access = true
   labels                      = merge(local.common_labels, { purpose = "exports" })
-  default_kms_key_name        = google_kms_crypto_key.application.id
 
   lifecycle_rule {
     condition {
