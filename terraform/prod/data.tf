@@ -57,9 +57,9 @@ resource "google_sql_database_instance" "replica" {
   }
 
   settings {
-    tier            = "db-custom-4-16384"
+    tier            = "db-custom-8-32768"
     disk_type       = "PD_SSD"
-    disk_size       = 500
+    disk_size       = 1000
     disk_autoresize = true
     user_labels     = local.common_labels
   }
@@ -68,7 +68,7 @@ resource "google_sql_database_instance" "replica" {
 resource "google_redis_instance" "cache" {
   name           = "demo-app-${var.environment}-cache"
   tier           = "STANDARD_HA"
-  memory_size_gb = 32
+  memory_size_gb = 64
   region         = var.region
   redis_version  = "REDIS_7_0"
   labels         = local.common_labels
