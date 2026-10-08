@@ -68,7 +68,7 @@ resource "google_sql_database_instance" "replica" {
 resource "google_redis_instance" "cache" {
   name           = "demo-app-${var.environment}-cache"
   tier           = "STANDARD_HA"
-  memory_size_gb = 64
+  memory_size_gb = 72
   region         = var.region
   redis_version  = "REDIS_7_0"
   labels         = local.common_labels
