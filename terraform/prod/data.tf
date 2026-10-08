@@ -122,8 +122,9 @@ resource "google_pubsub_topic" "events" {
 }
 
 resource "google_pubsub_subscription" "events_worker" {
-  name                 = "demo-app-${var.environment}-events-worker"
-  topic                = google_pubsub_topic.events.id
-  ack_deadline_seconds = 60
-  labels               = local.common_labels
+  name                       = "demo-app-${var.environment}-events-worker"
+  topic                      = google_pubsub_topic.events.id
+  ack_deadline_seconds       = 60
+  message_retention_duration = "259200s"
+  labels                     = local.common_labels
 }

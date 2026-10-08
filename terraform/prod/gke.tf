@@ -43,7 +43,7 @@ resource "google_container_node_pool" "batch_spot" {
   location = var.region
   cluster  = google_container_cluster.main.name
 
-  node_count = 1
+  node_count = 2
 
   node_config {
     machine_type = "n2d-standard-16"
