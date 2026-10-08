@@ -37,7 +37,7 @@ resource "google_sql_database_instance" "primary" {
       start_time                     = "03:00"
 
       backup_retention_settings {
-        retained_backups = 21
+        retained_backups = 28
       }
     }
 
