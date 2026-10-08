@@ -28,7 +28,7 @@ resource "google_sql_database_instance" "primary" {
     tier              = "db-custom-8-32768"
     availability_type = "REGIONAL"
     disk_type         = "PD_SSD"
-    disk_size         = 500
+    disk_size         = 750
     disk_autoresize   = true
 
     backup_configuration {
@@ -37,7 +37,7 @@ resource "google_sql_database_instance" "primary" {
       start_time                     = "03:00"
 
       backup_retention_settings {
-        retained_backups = 14
+        retained_backups = 21
       }
     }
 
@@ -68,7 +68,7 @@ resource "google_sql_database_instance" "replica" {
 resource "google_redis_instance" "cache" {
   name           = "demo-app-${var.environment}-cache"
   tier           = "STANDARD_HA"
-  memory_size_gb = 16
+  memory_size_gb = 32
   region         = var.region
   redis_version  = "REDIS_7_0"
   labels         = local.common_labels

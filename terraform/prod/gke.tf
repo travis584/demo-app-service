@@ -23,7 +23,7 @@ resource "google_container_node_pool" "platform" {
   location = var.region
   cluster  = google_container_cluster.main.name
 
-  node_count = 2 # per zone, 3 zones in us-central1
+  node_count = 3 # per zone, 3 zones in us-central1
 
   node_config {
     machine_type = "n2d-standard-8"
