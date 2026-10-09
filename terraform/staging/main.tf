@@ -86,9 +86,7 @@ resource "google_storage_bucket" "artifacts" {
   labels                      = local.common_labels
 }
 
-# Cloud Run is usage-driven, so Infracost reports it as a cost it cannot
-# determine without a usage file. Keep it here to exercise the `unsupported`
-# estimate status end to end.
+# Usage-driven service; native TFC cost estimates may have limited coverage here.
 resource "google_cloud_run_v2_service" "api" {
   name     = "demo-app-staging-api"
   location = var.region

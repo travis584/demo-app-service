@@ -28,7 +28,7 @@ resource "google_sql_database_instance" "primary" {
     tier              = "db-custom-8-32768"
     availability_type = "REGIONAL"
     disk_type         = "PD_SSD"
-    disk_size         = 500
+    disk_size         = 850
     disk_autoresize   = true
 
     backup_configuration {
@@ -37,7 +37,7 @@ resource "google_sql_database_instance" "primary" {
       start_time                     = "03:00"
 
       backup_retention_settings {
-        retained_backups = 14
+        retained_backups = 28
       }
     }
 
@@ -57,9 +57,9 @@ resource "google_sql_database_instance" "replica" {
   }
 
   settings {
-    tier            = "db-custom-4-16384"
+    tier            = "db-custom-8-32768"
     disk_type       = "PD_SSD"
-    disk_size       = 500
+    disk_size       = 1000
     disk_autoresize = true
     user_labels     = local.common_labels
   }
@@ -68,7 +68,7 @@ resource "google_sql_database_instance" "replica" {
 resource "google_redis_instance" "cache" {
   name           = "demo-app-${var.environment}-cache"
   tier           = "STANDARD_HA"
-  memory_size_gb = 16
+  memory_size_gb = 80
   region         = var.region
   redis_version  = "REDIS_7_0"
   labels         = local.common_labels
@@ -122,8 +122,9 @@ resource "google_pubsub_topic" "events" {
 }
 
 resource "google_pubsub_subscription" "events_worker" {
-  name                 = "demo-app-${var.environment}-events-worker"
-  topic                = google_pubsub_topic.events.id
-  ack_deadline_seconds = 60
-  labels               = local.common_labels
+  name                       = "demo-app-${var.environment}-events-worker"
+  topic                      = google_pubsub_topic.events.id
+  ack_deadline_seconds       = 60
+  message_retention_duration = "259200s"
+  labels                     = local.common_labels
 }

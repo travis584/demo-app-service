@@ -25,11 +25,11 @@ variable "environment" {
 variable "api_node_count" {
   description = "Number of n2-standard-8 API nodes. Commitment covers 3."
   type        = number
-  default     = 3
+  default     = 4
 }
 
 variable "worker_node_count" {
   description = "Number of n2-standard-4 async worker nodes. Not commitment-covered."
   type        = number
-  default     = 2
+  default     = 3
 }

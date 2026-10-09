@@ -60,7 +60,7 @@ resource "google_compute_disk" "api_data" {
   name   = "demo-app-${var.environment}-api-data-${count.index + 1}"
   type   = "pd-ssd"
   zone   = var.zone
-  size   = 500
+  size   = 750
   labels = local.common_labels
 }
 

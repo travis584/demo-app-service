@@ -8,9 +8,8 @@ terraform {
     }
   }
 
-  # Terraform Cloud backend is intentionally commented out so that `terraform init`
-  # and `infracost breakdown` work with no credentials. Uncomment to exercise the
-  # HCP Terraform speculative-plan / run-task path instead of the Infracost CI path.
+  # Uncomment and set organization/workspace to connect this stack to HCP Terraform
+  # for speculative plans, native cost estimates, and the post-plan run task.
   #
   # cloud {
   #   organization = "pump-demo"

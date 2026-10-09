@@ -5,7 +5,5 @@
 *.tfplan
 crash.log
 *.auto.tfvars
-.infracost/
-infracost-*.json
 .idea
 .junie
