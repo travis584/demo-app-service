@@ -28,7 +28,7 @@ resource "google_sql_database_instance" "primary" {
     tier              = "db-custom-8-32768"
     availability_type = "REGIONAL"
     disk_type         = "PD_SSD"
-    disk_size         = 800
+    disk_size         = 850
     disk_autoresize   = true
 
     backup_configuration {
